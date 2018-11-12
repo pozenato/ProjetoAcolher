@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">  
+
+    <body>
+
+        <ui:composition template="./../homePage.xhtml">
+
+            <ui:define name="title">Listar Adoções</ui:define>
+
+            <ui:define name="content">
+                <h:form>
+
+                    <h4 class="title ui-widget-header ui-corner-all">Lista de Adocoes Cadastradas</h4>
+
+                    <h:panelGrid class="tamanho995">
+                        <div>
+                            <p:toolbar>  
+                                <p:toolbarGroup align="left">
+                                    <h:commandLink styleClass="btn btn-success btn-small" action="#{adocaoManagedBean.montarPaginaParaInsercao}" value="Rergistrar Adoções" />
+                                </p:toolbarGroup>  
+                            </p:toolbar> 
+                        </div>
+
+                        <h:outputText value="Não existem Adoções cadastradss" rendered="#{empty adocaoManagedBean.adocoes}" />
+
+                        <p:dataTable id="adocao" value="#{adocaoManagedBean.adocoes}" var="adocao" rendered="#{not empty adocaoManagedBean.adocoes}"
+                                     filteredValue="#{adocaoManagedBean.adocoesFiltro}" scrollHeight="270" scrollable="true" >
+                            <p:column sortBy="#{adocao.idpessoa.nome}" filterBy="#{adocao.idpessoa.nome}">
+                                <f:facet name="header">
+                                    <h:outputText value="Nome da Pessoa " />
+                                </f:facet>
+                                <h:outputText value="#{adocao.idpessoa.nome}" />
+                            </p:column>
+                            <p:column sortBy="#{adocao.idanimal.nome}" filterBy="#{adocao.idanimal.nome}">
+                                <f:facet name="header">
+                                    <h:outputText value="Nome do Animal"/>
+                                </f:facet>
+                                <h:outputText value="#{adocao.idanimal.nome}" />
+                            </p:column>  
+                            <p:column sortBy="#{adocao.idanimal.tipo}" filterBy="#{adocao.idanimal.tipo}">
+                                <f:facet name="header">
+                                    <h:outputText value="Tipo do Animal"/>
+                                </f:facet>
+                                <h:outputText value="Cachorro" rendered="#{adocao.idanimal.tipo == 1}" />
+                                <h:outputText value="Gato" rendered="#{adocao.idanimal.tipo == 2}" />
+                            </p:column>
+                            <p:column sortBy="#{adocao.dataadocao}" filterBy="#{adocao.dataadocao}">
+                                <f:facet name="header">
+                                    <h:outputText value="Data da Adoção" />
+                                </f:facet>
+                                <h:outputText value="#{adocao.dataadocao}">
+                                    <f:convertDateTime type="date" dateStyle="medium"/>
+                                </h:outputText>
+                            </p:column>
+                        </p:dataTable>
+
+                    </h:panelGrid>
+
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html> 

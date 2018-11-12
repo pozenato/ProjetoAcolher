@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">  
+
+    <body>
+
+        <ui:composition template="./../homePage.xhtml">
+
+            <ui:define name="title">Listar Animais</ui:define>
+
+            <ui:define name="content">
+                <h:form>
+
+                    <h4 class="title ui-widget-header ui-corner-all">Lista de Animais Cadastrados</h4>
+
+                    <h:panelGrid class="tamanho995">
+                        <div>
+                            <p:toolbar>  
+                                <p:toolbarGroup align="left">
+                                    <h:commandLink styleClass="btn btn-success btn-small" action="#{animalManagedBean.montarPaginaParaInsercao}" value="Adicionar Animais" />
+                                </p:toolbarGroup>  
+                            </p:toolbar> 
+                        </div>
+
+                        <h:outputText value="Não existem Animais cadastrados" rendered="#{empty animalManagedBean.animais}" />
+
+                        <p:dataTable id="animal" value="#{animalManagedBean.animais}" var="animal" rendered="#{not empty animalManagedBean.animais}"
+                                     filteredValue="#{animalManagedBean.animaisFiltro}" scrollHeight="270" scrollable="true" >
+                            <p:column sortBy="#{animal.nome}" filterBy="#{animal.nome}">
+                                <f:facet name="header">
+                                    <h:outputText value="Nome" />
+                                </f:facet>
+                                <h:outputText value="#{animal.nome}" />
+                            </p:column>
+                            <p:column sortBy="#{animal.tipo}" filterBy="#{animal.tipo}">
+                                <f:facet name="header">
+                                    <h:outputText value="Tipo do Animal"/>
+                                </f:facet>
+                                <h:outputText value="Cachorro" rendered="#{animal.tipo == 1}" />
+                                <h:outputText value="Gato" rendered="#{animal.tipo == 2}" />
+                            </p:column>
+                            <p:column sortBy="#{animal.raca}" filterBy="#{animal.raca}">
+                                <f:facet name="header">
+                                    <h:outputText value="Raça"/>
+                                </f:facet>
+                                <h:outputText value="#{animal.raca}" />
+                            </p:column>  
+                            <p:column sortBy="#{animal.datanasc}" filterBy="#{animal.datanasc}">
+                                <f:facet name="header">
+                                    <h:outputText value="Data de Nascimento" />
+                                </f:facet>
+                                <h:outputText value="#{animal.datanasc}">
+                                    <f:convertDateTime type="date" dateStyle="medium"/>
+                                </h:outputText>
+                            </p:column>
+                            <p:column sortBy="#{animal.status}"  filterBy="#{animal.status}">
+                                <f:facet name="header">
+                                    <h:outputText value="Status do Animal" />
+                                </f:facet>
+                                <p:selectBooleanCheckbox value="#{animal.status}" disabled="true"/>
+                            </p:column>   
+                            <p:column exportable="false">
+                                <f:facet name="header">
+                                    <h:outputText value=""/>
+                                </f:facet>
+                                <h:commandButton styleClass="btn btn-warning btn-small" action="#{animalManagedBean.montarPaginaParaAlteracao}" value="Alterar">
+                                    <f:setPropertyActionListener value="#{animal}" target="#{animalManagedBean.animal}" />  
+                                </h:commandButton>                                                                   
+                            </p:column>
+                        </p:dataTable>
+
+                    </h:panelGrid>
+
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html> 

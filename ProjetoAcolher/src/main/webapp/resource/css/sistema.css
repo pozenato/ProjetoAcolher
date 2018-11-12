@@ -1,0 +1,40 @@
+.ui-panelmenu .ui-panelmenu-header a {
+    display: block;
+    padding: .5em .5em .5em 2.2em;
+}
+
+.ui-state-default a, .ui-state-default a:link, .ui-state-default a:visited {
+    color: #4f4f4f;
+    text-decoration: none;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 10px 0;
+    font-family: inherit;
+    font-weight: bold;
+    line-height: 20px;
+    color: inherit;
+}
+
+h4 {
+    font-size: 17.5px;
+}
+
+h4 {
+    padding: 4px;
+    margin-top: -10px !important;
+    color: #3E4095 !important;
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+    text-align: center;
+}
+
+#footerForm {
+    height: 50px;
+}
+

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title>Projeto Acolher</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=8" /> 
+
+        <!-- Importação CSS - Pagina Inicial-->  <link rel="stylesheet" type="text/css" href="#{facesContext.externalContext.requestContextPath}/resource/css/otimo.css"/>
+        <!-- Importação CSS - Pagina Inicial-->  <link rel="stylesheet" type="text/css" href="#{facesContext.externalContext.requestContextPath}/resource/css/corpo.css"/>
+        <!-- Importação JS Locale --> <script src="#{facesContext.externalContext.requestContextPath}/resource/js/primefaces-locale.js"></script>
+
+        <!-- Importação da Biblioteca JQuery --> <script src="#{facesContext.externalContext.requestContextPath}/js/jquery-1.9.1.min.js"></script>
+        <!-- Importação da Bliblioteca Bootstrap --> <script src="#{facesContext.externalContext.requestContextPath}/js/bootstrap.js"></script>
+        <!-- Importação das folhas de estilo Bootstrap --> <link rel="stylesheet" type="text/css" href="#{facesContext.externalContext.requestContextPath}/css/bootstrap.css"/>
+    </h:head>
+
+    <h:body>     
+         
+        <div id="pagina">
+
+            <div id="headerDegrade">
+                <header>
+
+                    <div class="headerImagens">
+                        <a href=".././faces/index.xhtml"><img src="#{facesContext.externalContext.requestContextPath}/resource/img/EU-ADOTO-logo.png" style="width: 36%" id="logoGrevillea"/></a>
+
+                        <div id="headerDireita">
+                           <br/>
+                            <img src="#{facesContext.externalContext.requestContextPath}/resource/img/administrativo.png" id="logoAdmin"/>
+                        </div>
+                    </div>
+                </header>
+            </div>
+            <div class="corpo">
+                <div id="menu">
+                    <h:form>
+                        <p:menubar style="padding-left:35%"> 
+                            <p:submenu label="Cadastro" icon="ui-icon-document">                                
+                                <p:menuitem value="Pessoas" icon="ui-icon-person" action="#{pessoaManagedBean.listar}"/>
+                                <p:menuitem value="Animais" icon="ui-icon-person" action="#{animalManagedBean.listar}"/>                                
+                            </p:submenu>
+
+                            <p:submenu label="Adoção" icon="ui-icon-folder-collapsed">
+                                <p:menuitem value="Registrar Adoção" icon="ui-icon-contact" action="#{adocaoManagedBean.montarPaginaParaInsercao}" />                                
+                            </p:submenu>
+                            
+                            <p:submenu label="Consultar" icon="ui-icon-folder-collapsed">
+                                <p:menuitem value="Adoção" icon="ui-icon-calculator" action="#{adocaoManagedBean.listar}" />
+                                
+                            </p:submenu>
+
+                        </p:menubar>
+                    </h:form>
+                </div>
+
+                <section>
+                    <div id="corpoAdmin">
+
+                        <article style="min-height: 400px;">
+                            <ui:insert name="content"> 
+
+                            </ui:insert>
+                        </article>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <br />
+
+        <div id="stick"></div>
+
+    </h:body>
+</html>

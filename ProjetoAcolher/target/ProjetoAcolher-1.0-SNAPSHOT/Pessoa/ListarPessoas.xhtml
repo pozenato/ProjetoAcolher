@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">  
+
+    <body>
+
+        <ui:composition template="./../homePage.xhtml">
+
+            <ui:define name="title">Listar Pessoas</ui:define>
+
+            <ui:define name="content">
+                <h:form>
+
+                    <h4 class="title ui-widget-header ui-corner-all">Lista de Pessoas Cadastradas</h4>
+
+                    <h:panelGrid class="tamanho995">
+                        <div>
+                            <p:toolbar>  
+                                <p:toolbarGroup align="left">
+                                    <h:commandLink styleClass="btn btn-success btn-small" action="#{pessoaManagedBean.montarPaginaParaInsercao}" value="Adicionar Pessoas" />
+                                </p:toolbarGroup>  
+                            </p:toolbar> 
+                        </div>
+
+                        <h:outputText value="Não existem Pessoas cadastradss" rendered="#{empty pessoaManagedBean.pessoas}" />
+
+                        <p:dataTable id="pessoa" value="#{pessoaManagedBean.pessoas}" var="pessoa" rendered="#{not empty pessoaManagedBean.pessoas}"
+                                     filteredValue="#{pessoaManagedBean.pessoaFiltro}" scrollHeight="270" scrollable="true" >
+                            <p:column sortBy="#{pessoa.nome}" filterBy="#{pessoa.nome}">
+                                <f:facet name="header">
+                                    <h:outputText value="Nome" />
+                                </f:facet>
+                                <h:outputText value="#{pessoa.nome}" />
+                            </p:column>
+                            <p:column sortBy="#{pessoa.telefone}" filterBy="#{pessoa.telefone}">
+                                <f:facet name="header">
+                                    <h:outputText value="Telefone"/>
+                                </f:facet>
+                                <h:outputText value="#{pessoa.telefone}" />
+                            </p:column>  
+                            <p:column sortBy="#{pessoa.status}"  filterBy="#{pessoa.status}">
+                                <f:facet name="header">
+                                    <h:outputText value="Status da Pessoa" />
+                                </f:facet>
+                                <p:selectBooleanCheckbox value="#{pessoa.status}" disabled="true"/>
+                            </p:column>   
+                            <p:column exportable="false">
+                                <f:facet name="header">
+                                    <h:outputText value=""/>
+                                </f:facet>
+                                <h:commandButton styleClass="btn btn-warning btn-small" action="#{pessoaManagedBean.montarPaginaParaAlteracao}" value="Alterar">
+                                    <f:setPropertyActionListener value="#{pessoa}" target="#{pessoaManagedBean.pessoa}" />  
+                                </h:commandButton>                                                                   
+                            </p:column>
+                        </p:dataTable>
+
+                    </h:panelGrid>
+
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html> 
